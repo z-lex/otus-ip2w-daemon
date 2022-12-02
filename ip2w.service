@@ -1,0 +1,15 @@
+[Unit]
+Description=uWSGI instance to serve the Otus weather daemon ip2w
+
+[Service]
+# prepare directory for Unix socket ("-" prefix means that it can fail)
+ExecStartPre=-/usr/bin/bash -c 'mkdir -p /run/uwsgi; chown root:nginx /run/uwsgi'
+# start app
+ExecStart=/usr/bin/bash -c 'uwsgi --ini /app/ip2w-uwsgi.ini'
+
+# what to do on "systemctl enable <unit>"
+[Install]
+# this unit should start whenever the server is in multi-user mode
+WantedBy=multi-user.target
+
+

@@ -1,0 +1,3 @@
+requests==2.27.1
+uwsgi==2.0.21
+ipinfo==3.0.0

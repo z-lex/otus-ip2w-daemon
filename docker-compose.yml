@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    image: otus_ip2w_centos7:latest
+    container_name: otus_ip2w_centos7_run
+    tty: true
+    ports:
+      - "4000:80"
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - ${TMPDIR:-/tmp}:/run
+    privileged: true  # required to run systemd
